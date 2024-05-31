@@ -4,9 +4,12 @@ const morgan = require("morgan");
 require("dotenv").config();
 const port = process.env.PORT;
 
-app.use(morgan("dev"));
-
+//routers
 const eventRouter = require("./routers/eventRouter");
+//middlewares
+const notFound = require("./middlewares/notFound");
+const checkErrors = require("./middlewares/checkErrors");
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   res.json({
@@ -17,6 +20,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/events", eventRouter);
+
+app.use(notFound);
+app.use(checkErrors);
 
 app.listen(port, () => {
   console.log(`Server pronto a http://localhost:${port}`);
