@@ -6,6 +6,8 @@ const port = process.env.PORT;
 
 app.use(morgan("dev"));
 
+const eventRouter = require("./routers/eventRouter");
+
 app.get("/", (req, res) => {
   res.json({
     message: "Home Page",
@@ -13,6 +15,8 @@ app.get("/", (req, res) => {
     route: "/",
   });
 });
+
+app.use("/events", eventRouter);
 
 app.listen(port, () => {
   console.log(`Server pronto a http://localhost:${port}`);
