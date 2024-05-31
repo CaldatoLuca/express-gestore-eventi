@@ -1,4 +1,6 @@
 const fs = require("fs");
+const Reservation = require("./reservationModel");
+const { getPath } = require("../utils");
 
 class Event {
   constructor(id, title, description, date, maxSeats) {
@@ -60,6 +62,22 @@ class Event {
       }
       return true;
     });
+  }
+
+  static associatedReservations(eventId) {
+    const ids = Event.read(
+      getPath("eventsDb", { directory: "db", extension: "json" })
+    ).map((e) => e.id);
+
+    if (!ids.includes(eventId)) return [];
+
+    const reservations = Reservation.read(
+      getPath("reservationsDb", { directory: "db", extension: "json" })
+    );
+
+    console.log(reservations);
+
+    return reservations.filter((r) => r.eventId === eventId);
   }
 }
 

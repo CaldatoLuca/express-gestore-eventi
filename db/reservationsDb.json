@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "firstName": "Mario",
+    "lastName": "Rossi",
+    "email": "mario.rossi@example.com",
+    "eventId": 1
+  },
+  {
+    "id": 2,
+    "firstName": "Luca",
+    "lastName": "Bianchi",
+    "email": "luca.bianchi@example.com",
+    "eventId": 2
+  },
+  {
+    "id": 3,
+    "firstName": "Giulia",
+    "lastName": "Verdi",
+    "email": "giulia.verdi@example.com",
+    "eventId": 3
+  },
+  {
+    "id": 4,
+    "firstName": "Anna",
+    "lastName": "Neri",
+    "email": "anna.neri@example.com",
+    "eventId": 4
+  },
+  {
+    "id": 5,
+    "firstName": "Paolo",
+    "lastName": "Gialli",
+    "email": "paolo.gialli@example.com",
+    "eventId": 5
+  },
+  {
+    "id": 6,
+    "firstName": "Francesca",
+    "lastName": "Blu",
+    "email": "francesca.blu@example.com",
+    "eventId": 1
+  },
+  {
+    "id": 7,
+    "firstName": "Carlo",
+    "lastName": "Rosa",
+    "email": "carlo.rosa@example.com",
+    "eventId": 2
+  },
+  {
+    "id": 8,
+    "firstName": "Elisa",
+    "lastName": "Viola",
+    "email": "elisa.viola@example.com",
+    "eventId": 3
+  },
+  {
+    "id": 9,
+    "firstName": "Marco",
+    "lastName": "Marrone",
+    "email": "marco.marrone@example.com",
+    "eventId": 4
+  },
+  {
+    "id": 10,
+    "firstName": "Sara",
+    "lastName": "Grigio",
+    "email": "sara.grigio@example.com",
+    "eventId": 5
+  },
+  {
+    "id": 11,
+    "firstName": "Luigi",
+    "lastName": "Oro",
+    "email": "luigi.oro@example.com",
+    "eventId": 6
+  },
+  {
+    "id": 12,
+    "firstName": "Sofia",
+    "lastName": "Argento",
+    "email": "sofia.argento@example.com",
+    "eventId": 7
+  },
+  {
+    "id": 13,
+    "firstName": "Davide",
+    "lastName": "Bronzo",
+    "email": "davide.bronzo@example.com",
+    "eventId": 8
+  },
+  {
+    "id": 14,
+    "firstName": "Giorgio",
+    "lastName": "Verde",
+    "email": "giorgio.verde@example.com",
+    "eventId": 9
+  },
+  {
+    "id": 15,
+    "firstName": "Elena",
+    "lastName": "Blu",
+    "email": "elena.blu@example.com",
+    "eventId": 1
+  },
+  {
+    "id": 16,
+    "firstName": "Martina",
+    "lastName": "Rosa",
+    "email": "martina.rosa@example.com",
+    "eventId": 2
+  },
+  {
+    "id": 17,
+    "firstName": "Riccardo",
+    "lastName": "Giallo",
+    "email": "riccardo.giallo@example.com",
+    "eventId": 3
+  },
+  {
+    "id": 18,
+    "firstName": "Valeria",
+    "lastName": "Viola",
+    "email": "valeria.viola@example.com",
+    "eventId": 4
+  },
+  {
+    "id": 19,
+    "firstName": "Andrea",
+    "lastName": "Nero",
+    "email": "andrea.nero@example.com",
+    "eventId": 5
+  },
+  {
+    "id": 20,
+    "firstName": "Alice",
+    "lastName": "Bianco",
+    "email": "alice.bianco@example.com",
+    "eventId": 6
+  }
+]

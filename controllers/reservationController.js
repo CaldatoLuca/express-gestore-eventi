@@ -1,8 +1,21 @@
+const Event = require("../models/eventModel");
+
 const index = (req, res) => {
+  let message = `Reservations List for Event ${req.params.event}`;
+
+  const associatedReservations = Event.associatedReservations(
+    +req.params.event
+  );
+
+  if (associatedReservations.length === 0) {
+    message = "There are no reservations for this event";
+  }
+
   res.json({
-    message: "Reservations List",
+    message,
     status: 200,
     route: "/events/:event/reservations",
+    associatedReservations,
   });
 };
 
