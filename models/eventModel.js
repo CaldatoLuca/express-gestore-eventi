@@ -1,6 +1,7 @@
 const fs = require("fs");
 const Reservation = require("./reservationModel");
 const { getPath } = require("../utils");
+const CustomError = require("../exceptions/customErrors");
 
 class Event {
   constructor(id, title, description, date, maxSeats) {
@@ -16,7 +17,7 @@ class Event {
    */
   setId(value) {
     if (!Number.isInteger(value) || value <= 0) {
-      throw new Error("Invalid ID. ID must be a positive integer.");
+      throw new CustomError("Invalid ID. ID must be a positive integer.", 400);
     }
     this.id = value;
   }
@@ -26,7 +27,10 @@ class Event {
    */
   setTitle(value) {
     if (typeof value !== "string" || value.trim() === "") {
-      throw new Error("Invalid title. Title must be a non empty string.");
+      throw new CustomError(
+        "Invalid title. Title must be a non empty string.",
+        400
+      );
     }
     this.title = value;
   }
@@ -36,8 +40,9 @@ class Event {
    */
   setDescription(value) {
     if (typeof value !== "string" || value.trim() === "") {
-      throw new Error(
-        "Invalid description. Description must be a non empty string."
+      throw new CustomError(
+        "Invalid description. Description must be a non empty string.",
+        400
       );
     }
     this.description = value;
@@ -48,7 +53,10 @@ class Event {
    */
   setDate(value) {
     if (!(value instanceof Date)) {
-      throw new Error("Invalid date. Date must be a valid Date object.");
+      throw new CustomError(
+        "Invalid date. Date must be a valid Date object.",
+        400
+      );
     }
     this.date = value;
   }
@@ -58,8 +66,9 @@ class Event {
    */
   setMaxSeats(value) {
     if (!Number.isInteger(value) || value <= 0) {
-      throw new Error(
-        "Invalid Max Seats. Max Seats must be a positive integer."
+      throw new CustomError(
+        "Invalid Max Seats. Max Seats must be a positive integer.",
+        400
       );
     }
     this.maxSeats = value;
@@ -128,13 +137,11 @@ class Event {
       getPath("eventsDb", { directory: "db", extension: "json" })
     ).map((e) => e.id);
 
-    if (!ids.includes(eventId)) return [];
+    if (!ids.includes(eventId)) throw new CustomError("Event not found", 404);
 
     const reservations = Reservation.read(
       getPath("reservationsDb", { directory: "db", extension: "json" })
     );
-
-    console.log(reservations);
 
     return reservations.filter((r) => r.eventId === eventId);
   }

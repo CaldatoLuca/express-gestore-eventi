@@ -1,18 +1,17 @@
 const Event = require("../models/eventModel");
+const CustomError = require("../exceptions/customErrors");
 
 const index = (req, res) => {
-  let message = `Reservations List for Event ${req.params.event}`;
-
   const associatedReservations = Event.associatedReservations(
     +req.params.event
   );
 
   if (associatedReservations.length === 0) {
-    message = "There are no reservations for this event";
+    throw new CustomError("No reservations found for this event", 404);
   }
 
   res.json({
-    message,
+    message: `Reservations List for Event ${req.params.event}`,
     status: 200,
     route: "/events/:event/reservations",
     associatedReservations,

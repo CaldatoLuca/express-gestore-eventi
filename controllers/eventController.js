@@ -1,6 +1,7 @@
 const Event = require("../models/eventModel");
 const { getPath } = require("../utils");
 let events = require("../db/eventsDb.json");
+const CustomError = require("../exceptions/customErrors");
 
 const index = (req, res) => {
   const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
@@ -18,13 +19,7 @@ const index = (req, res) => {
 
   //se i filtri non danno risultato
   if (events.length === 0) {
-    return res.status(404).json({
-      message: "No events found",
-      status: 404,
-      route: "/events",
-      events,
-      filters,
-    });
+    throw new CustomError("No events found", 404);
   }
 
   res.json({
@@ -44,11 +39,7 @@ const store = (req, res) => {
     !req.body.date ||
     !req.body.maxSeats
   ) {
-    return res.status(400).json({
-      message: "All fields are required",
-      status: 400,
-      route: "/events",
-    });
+    throw new CustomError("All fields are required", 400);
   }
 
   const eventToSave = new Event(
@@ -77,11 +68,7 @@ const update = (req, res) => {
   let eventToUpdate = events.find((e) => e.id === eventId);
 
   if (!eventToUpdate) {
-    return res.status(404).json({
-      message: "Event not found",
-      status: 404,
-      route: `/events/${eventId}`,
-    });
+    throw new CustomError("Event not found", 404);
   }
 
   //sovrascrivo i valori, se nella richiesta ho chiavi in piu le aggiunge

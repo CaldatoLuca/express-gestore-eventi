@@ -1,4 +1,5 @@
 const fs = require("fs");
+const CustomError = require("../exceptions/customErrors");
 
 class Reservation {
   constructor(id, firstName, lastName, email, eventId) {
@@ -14,7 +15,7 @@ class Reservation {
    */
   setId(value) {
     if (!Number.isInteger(value) || value <= 0) {
-      throw new Error("Invalid ID. ID must be a positive integer.");
+      throw new CustomError("Invalid ID. ID must be a positive integer.", 400);
     }
     this.id = value;
   }
@@ -24,8 +25,9 @@ class Reservation {
    */
   setFirstName(value) {
     if (typeof value !== "string" || value.trim() === "") {
-      throw new Error(
-        "Invalid first name. First name must be a non empty string."
+      throw new CustomError(
+        "Invalid first name. First name must be a non empty string.",
+        400
       );
     }
     this.firstName = value;
@@ -36,8 +38,9 @@ class Reservation {
    */
   setLastName(value) {
     if (typeof value !== "string" || value.trim() === "") {
-      throw new Error(
-        "Invalid last name. Last name must be a non empty string."
+      throw new CustomError(
+        "Invalid last name. Last name must be a non empty string.",
+        400
       );
     }
     this.lastName = value;
@@ -49,7 +52,10 @@ class Reservation {
   setEmail(value) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (typeof value !== "string" || !emailRegex.test(value)) {
-      throw new Error("Invalid email. Email must be a valid email address.");
+      throw new CustomError(
+        "Invalid email. Email must be a valid email address.",
+        400
+      );
     }
     this.email = value;
   }
@@ -59,7 +65,10 @@ class Reservation {
    */
   setEventId(value) {
     if (!Number.isInteger(value) || value <= 0) {
-      throw new Error("Invalid event ID. Event ID must be a positive integer.");
+      throw new CustomError(
+        "Invalid event ID. Event ID must be a positive integer.",
+        400
+      );
     }
     this.eventId = value;
   }

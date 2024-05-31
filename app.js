@@ -8,7 +8,7 @@ const port = process.env.PORT;
 const eventRouter = require("./routers/eventRouter");
 //middlewares
 const notFound = require("./middlewares/notFound");
-const checkErrors = require("./middlewares/checkErrors");
+const errorHandler = require("./middlewares/errorHandler");
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 app.use("/events", eventRouter);
 
 app.use(notFound);
-app.use(checkErrors);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server pronto a http://localhost:${port}`);
