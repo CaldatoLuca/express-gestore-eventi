@@ -22,6 +22,11 @@ class Event {
       (e) => new Event(e.id, e.title, e.description, e.date, e.maxSeats)
     );
   }
+
+  static save(filePath, events) {
+    const jsonFile = JSON.stringify(events);
+    fs.writeFileSync(filePath, jsonFile, "utf8");
+  }
 }
 
 module.exports = Event;
