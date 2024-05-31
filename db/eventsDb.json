@@ -3,63 +3,35 @@
     "id": 1,
     "title": "Conferenza Tech 2024",
     "description": "Una conferenza sulle ultime tecnologie del 2024.",
-    "date": "2024-06-15T09:00:00.000Z",
+    "date": "2024-06-15T09:00:00Z",
     "maxSeats": 200
   },
   {
     "id": 2,
     "title": "Workshop di Intelligenza Artificiale",
     "description": "Un workshop pratico sull'Intelligenza Artificiale.",
-    "date": "2024-07-01T13:00:00.000Z",
+    "date": "2024-07-01T13:00:00Z",
     "maxSeats": 50
   },
   {
     "id": 3,
     "title": "Corso di Programmazione Avanzata",
     "description": "Un corso avanzato sulla programmazione.",
-    "date": "2024-06-25T10:30:00.000Z",
+    "date": "2024-06-25T10:30:00Z",
     "maxSeats": 30
   },
   {
     "id": 4,
     "title": "Seminaro su Blockchain",
     "description": "Un seminario informativo sulla tecnologia blockchain.",
-    "date": "2024-07-10T15:00:00.000Z",
+    "date": "2024-07-10T15:00:00Z",
     "maxSeats": 100
   },
   {
     "id": 5,
     "title": "Hackathon di Innovazione",
     "description": "Un hackathon per innovare in vari settori tecnologici.",
-    "date": "2024-06-20T08:00:00.000Z",
+    "date": "2024-06-20T08:00:00Z",
     "maxSeats": 80
-  },
-  {
-    "id": 6,
-    "title": "Evento 6",
-    "description": "Descrizione evento 6",
-    "date": "2024-06-01T00:00:00.000Z",
-    "maxSeats": 100
-  },
-  {
-    "id": 7,
-    "title": "Evento 7",
-    "description": "Descrizione evento 7",
-    "date": "2024-06-01T00:00:00.000Z",
-    "maxSeats": 150
-  },
-  {
-    "id": 8,
-    "title": "Evento 8",
-    "description": "Descrizione evento 8",
-    "date": "2024-06-01T00:00:00.000Z",
-    "maxSeats": 180
-  },
-  {
-    "id": 9,
-    "title": "Corso express react",
-    "description": "impara le basi con boolean e experis",
-    "date": "2024-07-23T18:00:00.000Z",
-    "maxSeats": 90
   }
 ]

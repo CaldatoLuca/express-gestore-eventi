@@ -9,7 +9,11 @@ router.post("/", express.json(), eventController.store);
 router.put("/:event", express.json(), eventController.update);
 
 router.get("/:event/reservations", reservationController.index);
-router.post("/:event/reservations", reservationController.store);
+router.post(
+  "/:event/reservations",
+  express.json(),
+  reservationController.store
+);
 router.delete(
   "/:event/reservations/:reservation",
   reservationController.destroy

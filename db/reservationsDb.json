@@ -138,5 +138,12 @@
     "lastName": "Bianco",
     "email": "alice.bianco@example.com",
     "eventId": 6
+  },
+  {
+    "id": 21,
+    "firstName": "Luca",
+    "lastName": "Caldato",
+    "email": "luca.caldato@example.com",
+    "eventId": 2
   }
 ]

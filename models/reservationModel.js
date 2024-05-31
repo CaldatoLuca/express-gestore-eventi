@@ -86,6 +86,17 @@ class Reservation {
       (r) => new Reservation(r.id, r.firstName, r.lastName, r.email, r.eventId)
     );
   }
+
+  /**
+   * given the filepath and an array of reservations, saves them in the file
+   * pass all the array to not overwrite the file [...array,...events]
+   * @param {string} filePath
+   * @param {Array} events
+   */
+  static save(filePath, events) {
+    const jsonFile = JSON.stringify(events);
+    fs.writeFileSync(filePath, jsonFile, "utf8");
+  }
 }
 
 module.exports = Reservation;
