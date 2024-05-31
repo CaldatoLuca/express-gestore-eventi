@@ -1,6 +1,6 @@
 const Event = require("../models/eventModel");
 const { getPath } = require("../utils");
-const events = require("../db/eventsDb.json");
+let events = require("../db/eventsDb.json");
 
 const index = (req, res) => {
   const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
@@ -71,10 +71,41 @@ const store = (req, res) => {
 };
 
 const update = (req, res) => {
+  const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
+  // let events = Event.read(filePath);
+
+  const eventId = +req.params.event;
+  let eventToUpdate = events.find((e) => e.id === eventId);
+
+  if (!eventToUpdate) {
+    return res.status(404).json({
+      message: "Event not found",
+      status: 404,
+      route: `/events/${eventId}`,
+    });
+  }
+
+  //sovrascrivo i valori, se nella richiesta ho chiavi in piu le aggiunge
+  eventToUpdate = {
+    ...eventToUpdate,
+    ...req.body,
+  };
+
+  //modifico l' array di tutti gli eventi
+  //sostituisce l' array da modificare (e.id === eventId) se true
+  //con l' oggetto aggiornato 'eventToUpdate'
+  //altrimenti restituisce l' oggetto originale
+  events = events.map((e) => (e.id === eventId ? eventToUpdate : e));
+
+  //sovrascrivo
+  Event.save(filePath, events);
+
   res.json({
-    message: "Update Api in PUT",
+    message: "Update API in PUT",
     status: 200,
-    route: "/events/:event",
+    route: `/events/${eventId}`,
+    event: eventToUpdate,
+    events,
   });
 };
 
