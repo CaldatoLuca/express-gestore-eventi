@@ -23,6 +23,12 @@ class Event {
     );
   }
 
+  /**
+   * given the filepath and an array of events, saves them in the file
+   * pass all the array to not overwrite the file [...array,...events]
+   * @param {string} filePath
+   * @param {Array} events
+   */
   static save(filePath, events) {
     const jsonFile = JSON.stringify(events);
     fs.writeFileSync(filePath, jsonFile, "utf8");
