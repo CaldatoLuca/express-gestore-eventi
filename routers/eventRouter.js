@@ -4,7 +4,7 @@ const router = express.Router();
 const eventController = require("../controllers/eventController");
 
 router.get("/", eventController.index);
-router.post("/", eventController.store);
+router.post("/", express.json(), eventController.store);
 router.put("/:event", eventController.update);
 
 module.exports = router;

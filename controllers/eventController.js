@@ -6,6 +6,13 @@ const index = (req, res) => {
   const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
   const events = Event.read(filePath);
 
+  // const filters = {
+  //   id: req.query.id,
+  //   title: req.query.title,
+  //   date: req.query.date,
+  //   maxSeats: req.query.maxSeats,
+  // };
+
   if (req.query.id) {
     const event = events.find((event) => event.id === parseInt(req.query.id));
     return res.json({
@@ -25,12 +32,26 @@ const index = (req, res) => {
 };
 
 const store = (req, res) => {
+  if (
+    !req.body.id ||
+    !req.body.title ||
+    !req.body.description ||
+    !req.body.date ||
+    !req.body.maxSeats
+  ) {
+    return res.status(400).json({
+      message: "Tutti i campi sono obbligatori",
+      status: 400,
+      route: "/events",
+    });
+  }
+
   const eventToSave = new Event(
-    6,
-    "Evento 6",
-    "Descrizione evento 6",
-    "2024-06-01",
-    100
+    req.body.id,
+    req.body.title,
+    req.body.description,
+    req.body.date,
+    req.body.maxSeats
   );
   const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
   Event.save(filePath, [...events, eventToSave]);
