@@ -14,25 +14,7 @@ const index = (req, res) => {
   if (req.query.maxSeats) filters.maxSeats = +req.query.maxSeats;
 
   //applicazione filtri
-  if (Object.keys(filters).length > 0) {
-    for (const key in filters) {
-      if (key === "date") {
-        const filterDate = new Date(filters[key]);
-        events = events.filter((e) => {
-          const eventDate = new Date(e[key]);
-          return eventDate >= filterDate;
-        });
-      } else if (key === "maxSeats") {
-        events = events.filter((e) => {
-          return e[key] <= filters[key];
-        });
-      } else {
-        events = events.filter((e) => {
-          return e[key] == filters[key];
-        });
-      }
-    }
-  }
+  events = Event.filterEvents(events, filters);
 
   //se i filtri non danno risultato
   if (events.length === 0) {

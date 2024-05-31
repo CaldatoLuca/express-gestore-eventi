@@ -27,6 +27,34 @@ class Event {
     const jsonFile = JSON.stringify(events);
     fs.writeFileSync(filePath, jsonFile, "utf8");
   }
+
+  /**
+   * receive an array of events and an object of filters
+   * it return the filtered array
+   * @param {Array} events
+   * @param {object} filters
+   * @returns
+   */
+  static filterEvents(events, filters) {
+    if (!filters || Object.keys(filters).length === 0) {
+      return events;
+    }
+
+    return events.filter((e) => {
+      for (const key in filters) {
+        if (key === "date") {
+          const filterDate = new Date(filters[key]);
+          const eventDate = new Date(e[key]);
+          if (eventDate < filterDate) return false;
+        } else if (key === "maxSeats") {
+          if (e[key] > filters[key]) return false;
+        } else {
+          if (e[key] != filters[key]) return false;
+        }
+      }
+      return true;
+    });
+  }
 }
 
 module.exports = Event;
