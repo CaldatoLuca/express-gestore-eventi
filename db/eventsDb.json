@@ -33,5 +33,12 @@
     "description": "Un hackathon per innovare in vari settori tecnologici.",
     "date": "2024-06-20T08:00:00Z",
     "maxSeats": 80
+  },
+  {
+    "id": 6,
+    "title": "Evento 6",
+    "description": "Descrizione evento 6",
+    "date": "2024-06-01T00:00:00.000Z",
+    "maxSeats": 100
   }
 ]
