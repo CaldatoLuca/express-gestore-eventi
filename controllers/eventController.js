@@ -4,22 +4,44 @@ const events = require("../db/eventsDb.json");
 
 const index = (req, res) => {
   const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
-  const events = Event.read(filePath);
+  let events = Event.read(filePath);
 
-  // const filters = {
-  //   id: req.query.id,
-  //   title: req.query.title,
-  //   date: req.query.date,
-  //   maxSeats: req.query.maxSeats,
-  // };
+  //filtri dai dall' utente
+  const filters = {};
+  if (req.query.id) filters.id = +req.query.id;
+  if (req.query.title) filters.title = req.query.title;
+  if (req.query.date) filters.date = req.query.date;
+  if (req.query.maxSeats) filters.maxSeats = +req.query.maxSeats;
 
-  if (req.query.id) {
-    const event = events.find((event) => event.id === parseInt(req.query.id));
-    return res.json({
-      message: `Event with id ${req.query.id} found`,
-      status: 200,
+  //applicazione filtri
+  if (Object.keys(filters).length > 0) {
+    for (const key in filters) {
+      if (key === "date") {
+        const filterDate = new Date(filters[key]);
+        events = events.filter((e) => {
+          const eventDate = new Date(e[key]);
+          return eventDate >= filterDate;
+        });
+      } else if (key === "maxSeats") {
+        events = events.filter((e) => {
+          return e[key] <= filters[key];
+        });
+      } else {
+        events = events.filter((e) => {
+          return e[key] == filters[key];
+        });
+      }
+    }
+  }
+
+  //se i filtri non danno risultato
+  if (events.length === 0) {
+    return res.status(404).json({
+      message: "No events found",
+      status: 404,
       route: "/events",
-      event,
+      events,
+      filters,
     });
   }
 
@@ -28,6 +50,7 @@ const index = (req, res) => {
     status: 200,
     route: "/events",
     events,
+    filters,
   });
 };
 
@@ -40,7 +63,7 @@ const store = (req, res) => {
     !req.body.maxSeats
   ) {
     return res.status(400).json({
-      message: "Tutti i campi sono obbligatori",
+      message: "All fields are required",
       status: 400,
       route: "/events",
     });
