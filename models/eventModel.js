@@ -12,6 +12,60 @@ class Event {
   }
 
   /**
+   * Setter for id
+   */
+  setId(value) {
+    if (!Number.isInteger(value) || value <= 0) {
+      throw new Error("Invalid ID. ID must be a positive integer.");
+    }
+    this.id = value;
+  }
+
+  /**
+   * Setter for title
+   */
+  setTitle(value) {
+    if (typeof value !== "string" || value.trim() === "") {
+      throw new Error("Invalid title. Title must be a non empty string.");
+    }
+    this.title = value;
+  }
+
+  /**
+   * Setter for title
+   */
+  setDescription(value) {
+    if (typeof value !== "string" || value.trim() === "") {
+      throw new Error(
+        "Invalid description. Description must be a non empty string."
+      );
+    }
+    this.description = value;
+  }
+
+  /**
+   * Setter for date
+   */
+  setDate(value) {
+    if (!(value instanceof Date)) {
+      throw new Error("Invalid date. Date must be a valid Date object.");
+    }
+    this.date = value;
+  }
+
+  /**
+   * Setter for max seats
+   */
+  setMaxSeats(value) {
+    if (!Number.isInteger(value) || value <= 0) {
+      throw new Error(
+        "Invalid Max Seats. Max Seats must be a positive integer."
+      );
+    }
+    this.maxSeats = value;
+  }
+
+  /**
    * given a file path it retun an array of istances of the Event class
    * the given file must be a json with the correct properties
    * @param {string} filePath
@@ -64,6 +118,11 @@ class Event {
     });
   }
 
+  /**
+   * given an id it search the related reservations to the events
+   * @param {number} eventId
+   * @returns
+   */
   static associatedReservations(eventId) {
     const ids = Event.read(
       getPath("eventsDb", { directory: "db", extension: "json" })
