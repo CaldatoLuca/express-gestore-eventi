@@ -72,7 +72,6 @@ const store = (req, res) => {
 
 const update = (req, res) => {
   const filePath = getPath("eventsDb", { extension: "json", directory: "db" });
-  // let events = Event.read(filePath);
 
   const eventId = +req.params.event;
   let eventToUpdate = events.find((e) => e.id === eventId);
@@ -92,7 +91,7 @@ const update = (req, res) => {
   };
 
   //modifico l' array di tutti gli eventi
-  //sostituisce l' array da modificare (e.id === eventId) se true
+  //sostituisce l' oggetto da modificare (e.id === eventId) se true
   //con l' oggetto aggiornato 'eventToUpdate'
   //altrimenti restituisce l' oggetto originale
   events = events.map((e) => (e.id === eventId ? eventToUpdate : e));
