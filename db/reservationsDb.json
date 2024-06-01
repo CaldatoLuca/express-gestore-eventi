@@ -78,9 +78,9 @@
   },
   {
     "id": 12,
-    "firstName": "Sofia",
-    "lastName": "Argento",
-    "email": "sofia.argento@example.com",
+    "firstName": "Prova",
+    "lastName": "maxSeats1",
+    "email": "Prova.maxSeats1@example.com",
     "eventId": 7
   },
   {
@@ -112,6 +112,13 @@
     "eventId": 2
   },
   {
+    "id": 17,
+    "firstName": "Prova",
+    "lastName": "maxSeats2",
+    "email": "Prova.maxSeats2@example.com",
+    "eventId": 7
+  },
+  {
     "id": 18,
     "firstName": "Valeria",
     "lastName": "Viola",
@@ -138,5 +145,12 @@
     "lastName": "Caldato",
     "email": "luca.caldato@example.com",
     "eventId": 2
+  },
+  {
+    "id": 22,
+    "firstName": "Prova",
+    "lastName": "maxSeats3",
+    "email": "Prova.maxSeats3@example.com",
+    "eventId": 7
   }
 ]

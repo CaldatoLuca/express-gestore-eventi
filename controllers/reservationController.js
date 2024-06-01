@@ -30,6 +30,9 @@ const store = (req, res) => {
     throw new CustomError("Event already passed", 400);
   }
 
+  if (Event.associatedReservations(+req.params.event).length >= event.maxSeats)
+    throw new CustomError("Event is full", 400);
+
   const ids = Event.read(
     getPath("eventsDb", { directory: "db", extension: "json" })
   ).map((e) => e.id);

@@ -40,5 +40,12 @@
     "description": "Prova per evento scdutp",
     "date": "2024-03-20T08:00:00Z",
     "maxSeats": 20
+  },
+  {
+    "id": 7,
+    "title": "Evento con posti esauriti",
+    "description": "Prova per posti esauriti",
+    "date": "2024-06-20T08:00:00Z",
+    "maxSeats": 2
   }
 ]
