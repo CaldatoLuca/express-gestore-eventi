@@ -63,6 +63,27 @@ const store = (req, res) => {
 };
 
 const destroy = (req, res) => {
+  const event = Event.read(
+    getPath("eventsDb", { directory: "db", extension: "json" })
+  ).find((e) => e.id === +req.params.event);
+
+  if (!event) {
+    throw new CustomError("Event not found", 404);
+  }
+
+  const associatedReservationsIds = Event.associatedReservations(
+    +req.params.event
+  ).map((r) => r.id);
+
+  if (!associatedReservationsIds.includes(+req.params.reservation)) {
+    throw new CustomError("Reservation not found", 404);
+  }
+
+  Reservation.deleteReservation(
+    getPath("reservationsDb", { directory: "db", extension: "json" }),
+    +req.params.reservation
+  );
+
   res.json({
     message: "Delete a reservation",
     status: 200,

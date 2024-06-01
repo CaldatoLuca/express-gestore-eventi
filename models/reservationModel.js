@@ -97,6 +97,13 @@ class Reservation {
     const jsonFile = JSON.stringify(events);
     fs.writeFileSync(filePath, jsonFile, "utf8");
   }
+
+  static deleteReservation(filePath, reservationId) {
+    const filteredReservations = Reservation.read(filePath).filter(
+      (r) => r.id !== reservationId
+    );
+    Reservation.save(filePath, filteredReservations);
+  }
 }
 
 module.exports = Reservation;
