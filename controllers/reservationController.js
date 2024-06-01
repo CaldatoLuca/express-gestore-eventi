@@ -22,6 +22,14 @@ const index = (req, res) => {
 };
 
 const store = (req, res) => {
+  const event = Event.read(
+    getPath("eventsDb", { directory: "db", extension: "json" })
+  ).find((e) => e.id === +req.params.event);
+
+  if (new Date(event.date) <= new Date()) {
+    throw new CustomError("Event already passed", 400);
+  }
+
   const ids = Event.read(
     getPath("eventsDb", { directory: "db", extension: "json" })
   ).map((e) => e.id);
@@ -69,6 +77,10 @@ const destroy = (req, res) => {
 
   if (!event) {
     throw new CustomError("Event not found", 404);
+  }
+
+  if (new Date(event.date) <= new Date()) {
+    throw new CustomError("Event already passed", 400);
   }
 
   const associatedReservationsIds = Event.associatedReservations(
