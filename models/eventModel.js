@@ -100,10 +100,11 @@ class Event {
   }
 
   /**
-   * receive an array of events and an object of filters
-   * it return the filtered array
+   * given the array of events and an object of filters
+   * return the filtered array
+   * checking if filters are correct and included in the array properties
    * @param {Array} events
-   * @param {object} filters
+   * @param {Object} filters
    * @returns
    */
   static filterEvents(events, filters) {
